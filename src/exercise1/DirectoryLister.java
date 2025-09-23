@@ -11,7 +11,14 @@ public class DirectoryLister {
             return;
         }
         File dir = new File(args[0]);
+
         String[] list = dir.list();
+        if (list == null) {
+            System.out.println("Invalid directory: " + dir.getPath());
+            return;
+        }
+        Arrays.sort(list, String.CASE_INSENSITIVE_ORDER);
+
         System.out.println(Arrays.toString(list));
 
     }
