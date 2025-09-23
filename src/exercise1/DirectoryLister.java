@@ -10,8 +10,13 @@ public class DirectoryLister {
             System.out.println("Please provide the path to a directory as argument.");
             return;
         }
-        File dir = new File(args[0]);
 
+        File dir = new File(args[0]);
+        printDirectoryContents(dir);
+
+    }
+
+    private static void printDirectoryContents(File dir) {
         String[] list = dir.list();
         if (list == null) {
             System.out.println("Invalid directory: " + dir.getPath());
@@ -22,6 +27,5 @@ public class DirectoryLister {
         for (String file: list) {
             System.out.println(file);
         }
-
     }
 }
