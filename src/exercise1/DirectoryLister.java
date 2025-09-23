@@ -19,7 +19,9 @@ public class DirectoryLister {
         }
         Arrays.sort(list, String.CASE_INSENSITIVE_ORDER);
 
-        System.out.println(Arrays.toString(list));
+        for (String file: list) {
+            System.out.println(file);
+        }
 
     }
 }
