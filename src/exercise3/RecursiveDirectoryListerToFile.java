@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class RecursiveDirectoryListerToFile {
+
+    private static final String OUTPUT_FILE = "exercise3" + File.separator + "output.txt";
+
     public static void main(String[] args) {
         if (args.length != 1) {
             System.out.println("Please provide the path to a directory as argument.");
@@ -21,7 +24,7 @@ public class RecursiveDirectoryListerToFile {
             return;
         }
 
-        try (PrintWriter writer = new PrintWriter("exercise3/output.txt")) {
+        try (PrintWriter writer = new PrintWriter(OUTPUT_FILE)) {
             listDirectoryRecursive(dir, 0, writer);
             System.out.println("Directory contents saved to output.txt");
         } catch (IOException e) {
