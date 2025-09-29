@@ -12,8 +12,13 @@ public class DirectoryLister {
         }
 
         File dir = new File(args[0]);
-        printDirectoryContents(dir);
 
+        if (!dir.exists() || !dir.isDirectory()) {
+            System.out.println("The provided path is not a valid directory.");
+            return;
+        }
+
+        printDirectoryContents(dir);
     }
 
     private static void printDirectoryContents(File dir) {
@@ -22,6 +27,12 @@ public class DirectoryLister {
             System.out.println("Invalid directory: " + dir.getPath());
             return;
         }
+
+        if (list.length == 0) {
+            System.out.println("The directory is empty.");
+            return;
+        }
+
         Arrays.sort(list, String.CASE_INSENSITIVE_ORDER);
 
         for (String file: list) {
