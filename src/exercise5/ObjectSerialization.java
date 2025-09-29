@@ -6,7 +6,12 @@ public class ObjectSerialization {
 
     private static final String FILE_NAME = "exercise5" + File.separator + "person.ser";
     public static void main(String[] args) {
+        Person person = new Person("Alice", 30);
+        serializePerson(person);
 
+        Person deserialized = deserializePerson();
+        System.out.println("Original: " + person);
+        System.out.println("Deserialized: " + deserialized);
     }
 
     private static void serializePerson(Person person) {
