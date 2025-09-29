@@ -16,5 +16,20 @@ public class RecursiveDirectoryLister {
             System.out.println("The provided path is not a valid directory.");
             return;
         }
+
+        listDirectoryRecursive(dir);
     }
+
+    private static void listDirectoryRecursive(File dir) {
+        File[] files = dir.listFiles();
+        if (files == null) return;
+
+        for (File file : files) {
+            System.out.println(file.getName());
+            if (file.isDirectory()) {
+                listDirectoryRecursive(file);
+            }
+        }
+    }
+
 }
