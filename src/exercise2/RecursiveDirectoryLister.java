@@ -30,16 +30,19 @@ public class RecursiveDirectoryLister {
         Arrays.sort(files, (f1, f2) -> f1.getName().compareToIgnoreCase(f2.getName()));
 
         for (File file : files) {
-            String indent = " ".repeat(level * 2);
-            String type = file.isDirectory() ? "(D)" : "(F)";
-            String lastModified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-                    .format(new Date(file.lastModified()));
-            System.out.println(indent + file.getName() + " " + type + " " + lastModified);
-
+            printFileInfo(file, level);
             if (file.isDirectory()) {
                 listDirectoryRecursive(file, level + 1);
             }
         }
+    }
+
+    private static void printFileInfo(File file, int level) {
+        String indent = " ".repeat(level * 2);
+        String type = file.isDirectory() ? "(D)" : "(F)";
+        String lastModified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                .format(new Date(file.lastModified()));
+        System.out.println(indent + file.getName() + " " + type + " " + lastModified);
     }
 
 }
