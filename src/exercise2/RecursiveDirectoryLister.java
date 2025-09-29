@@ -18,19 +18,20 @@ public class RecursiveDirectoryLister {
             return;
         }
 
-        listDirectoryRecursive(dir);
+        listDirectoryRecursive(dir, 0);
     }
 
-    private static void listDirectoryRecursive(File dir) {
+    private static void listDirectoryRecursive(File dir, int level) {
         File[] files = dir.listFiles();
         if (files == null) return;
 
         Arrays.sort(files, (f1, f2) -> f1.getName().compareToIgnoreCase(f2.getName()));
 
         for (File file : files) {
-            System.out.println(file.getName());
+            String indent = " ".repeat(level * 2);
+            System.out.println(indent + file.getName());
             if (file.isDirectory()) {
-                listDirectoryRecursive(file);
+                listDirectoryRecursive(file, level + 1);
             }
         }
     }
