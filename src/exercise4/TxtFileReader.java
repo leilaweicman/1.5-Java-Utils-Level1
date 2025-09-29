@@ -16,5 +16,12 @@ public class TxtFileReader {
             System.out.println("The provided path is not a valid file.");
             return;
         }
+
+        readFileAndPrint(file);
     }
+
+    private static void readFileAndPrint(File file) {
+
+    }
+
 }
