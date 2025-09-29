@@ -20,6 +20,11 @@ public class TxtFileReader {
             return;
         }
 
+        if (file.length() == 0) {
+            System.out.println("The file is empty.");
+            return;
+        }
+
         readFileAndPrint(file);
     }
 
