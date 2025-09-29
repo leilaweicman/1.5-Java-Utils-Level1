@@ -1,7 +1,9 @@
 package exercise2;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 public class RecursiveDirectoryLister {
 
@@ -30,7 +32,9 @@ public class RecursiveDirectoryLister {
         for (File file : files) {
             String indent = " ".repeat(level * 2);
             String type = file.isDirectory() ? "(D)" : "(F)";
-            System.out.println(indent + file.getName() + " " + type);
+            String lastModified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .format(new Date(file.lastModified()));
+            System.out.println(indent + file.getName() + " " + type + " " + lastModified);
 
             if (file.isDirectory()) {
                 listDirectoryRecursive(file, level + 1);
