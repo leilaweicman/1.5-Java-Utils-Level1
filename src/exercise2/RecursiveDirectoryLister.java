@@ -29,7 +29,9 @@ public class RecursiveDirectoryLister {
 
         for (File file : files) {
             String indent = " ".repeat(level * 2);
-            System.out.println(indent + file.getName());
+            String type = file.isDirectory() ? "(D)" : "(F)";
+            System.out.println(indent + file.getName() + " " + type);
+
             if (file.isDirectory()) {
                 listDirectoryRecursive(file, level + 1);
             }
