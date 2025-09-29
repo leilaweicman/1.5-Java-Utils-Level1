@@ -10,6 +10,11 @@ public class TxtFileReader {
             return;
         }
 
-        File dir = new File(args[0]);
+        File file = new File(args[0]);
+
+        if (!file.exists() || !file.isFile()) {
+            System.out.println("The provided path is not a valid file.");
+            return;
+        }
     }
 }
