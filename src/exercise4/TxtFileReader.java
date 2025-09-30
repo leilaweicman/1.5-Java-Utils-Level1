@@ -1,8 +1,8 @@
 package exercise4;
 
-import java.io.BufferedReader;
+import common.FileValidator;
+
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class TxtFileReader {
@@ -15,13 +15,7 @@ public class TxtFileReader {
 
         File file = new File(args[0]);
 
-        if (!file.exists() || !file.isFile()) {
-            System.out.println("The provided path is not a valid file.");
-            return;
-        }
-
-        if (file.length() == 0) {
-            System.out.println("The file is empty.");
+        if (!FileValidator.isNonEmptyFile(file) && !FileValidator.isValidFile(file)) {
             return;
         }
 
