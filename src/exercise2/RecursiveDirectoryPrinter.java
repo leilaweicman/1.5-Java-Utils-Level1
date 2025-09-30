@@ -1,5 +1,7 @@
 package exercise2;
 
+import common.FileInfo;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;

@@ -1,4 +1,6 @@
-package exercise2;
+package common;
+
+import common.FileInfo;
 
 import java.io.File;
 import java.util.ArrayList;

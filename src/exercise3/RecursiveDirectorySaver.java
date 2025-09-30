@@ -1,5 +1,6 @@
 package exercise3;
 
+import common.FileInfo;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

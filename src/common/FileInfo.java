@@ -1,4 +1,4 @@
-package exercise3;
+package common;
 
 public class FileInfo {
     private final String name;
@@ -28,4 +28,5 @@ public class FileInfo {
     public int getLevel() {
         return level;
     }
+
 }

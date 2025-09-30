@@ -1,5 +1,8 @@
 package exercise2;
 
+import common.FileInfo;
+import common.RecursiveDirectoryService;
+
 import java.io.File;
 import java.util.List;
 
