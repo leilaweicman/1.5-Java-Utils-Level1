@@ -1,11 +1,11 @@
 package exercise3;
 
+import common.FileInfo;
+import common.RecursiveDirectoryService;
+
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.List;
 
 public class RecursiveDirectoryListerToFile {
 
@@ -24,35 +24,18 @@ public class RecursiveDirectoryListerToFile {
             return;
         }
 
-        try (PrintWriter writer = new PrintWriter(OUTPUT_FILE)) {
-            listDirectoryRecursive(dir, 0, writer);
-            System.out.println("Directory contents saved to output.txt");
+        RecursiveDirectoryService service = new RecursiveDirectoryService();
+        RecursiveDirectorySaver saver = new RecursiveDirectorySaver(OUTPUT_FILE);
+
+        try {
+            List<FileInfo> files = service.listRecursive(dir, 0);
+            saver.save(files);
+            System.out.println("Directory contents saved to " + OUTPUT_FILE);
         } catch (IOException e) {
-            System.out.println("An error occurred while writing to file.");
+            System.out.println("An error occurred while saving directory contents.");
             e.printStackTrace();
         }
     }
 
-    private static void listDirectoryRecursive(File dir, int level, PrintWriter writer) {
-        File[] files = dir.listFiles();
-        if (files == null) return;
 
-        Arrays.sort(files, (f1, f2) -> f1.getName().compareToIgnoreCase(f2.getName()));
-
-        for (File file : files) {
-            saveFileInfo(file, level, writer);
-            if (file.isDirectory()) {
-                listDirectoryRecursive(file, level + 1, writer);
-            }
-        }
-    }
-
-    private static void saveFileInfo(File file, int level, PrintWriter writer) {
-        String indent = " ".repeat(level * 2);
-        String type = file.isDirectory() ? "(D)" : "(F)";
-        String lastModified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(file.lastModified()));
-        String info = indent + file.getName() + " " + type + " " + lastModified;
-
-        writer.println(info);
-    }
 }
