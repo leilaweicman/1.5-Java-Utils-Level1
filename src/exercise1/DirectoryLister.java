@@ -12,31 +12,14 @@ public class DirectoryLister {
         }
 
         File dir = new File(args[0]);
+        DirectoryService service = new DirectoryService();
+        DirectoryPrinter printer = new DirectoryPrinter();
 
-        if (!dir.exists() || !dir.isDirectory()) {
-            System.out.println("The provided path is not a valid directory.");
-            return;
-        }
-
-        printDirectoryContents(dir);
-    }
-
-    private static void printDirectoryContents(File dir) {
-        String[] list = dir.list();
-        if (list == null) {
-            System.out.println("Invalid directory: " + dir.getPath());
-            return;
-        }
-
-        if (list.length == 0) {
-            System.out.println("The directory is empty.");
-            return;
-        }
-
-        Arrays.sort(list, String.CASE_INSENSITIVE_ORDER);
-
-        for (String file: list) {
-            System.out.println(file);
+        try {
+            String[] files = service.listDirectory(dir);
+            printer.printFiles(files);
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
