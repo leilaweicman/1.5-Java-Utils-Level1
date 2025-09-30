@@ -15,7 +15,7 @@ public class TxtFileReader {
 
         File file = new File(args[0]);
 
-        if (!FileValidator.isNonEmptyFile(file) && !FileValidator.isValidFile(file)) {
+        if (!FileValidator.isValidFile(file)) {
             return;
         }
 

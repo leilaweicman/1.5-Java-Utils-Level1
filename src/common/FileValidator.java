@@ -16,17 +16,14 @@ public class FileValidator {
             System.out.println("The provided path is not a valid file.");
             return false;
         }
-        return true;
+        return !isEmptyFile(file);
     }
 
-    public static boolean isNonEmptyFile(File file) {
-        if (!isValidFile(file)) {
-            return false;
-        }
+    public static boolean isEmptyFile(File file) {
         if (file.length() == 0) {
             System.out.println("The file is empty.");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 }
